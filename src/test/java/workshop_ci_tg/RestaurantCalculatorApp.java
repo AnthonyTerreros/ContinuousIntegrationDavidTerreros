@@ -40,7 +40,8 @@ class RestaurantCalculatorApp {
 		RestaurantCalculator rc = new RestaurantCalculator();
 		double totalCostUserTest = 200;
 		double resDiscount = rc.getDiscounts(totalCostUserTest, userDinnerSelectedSize);
-		assertEquals(totalCostUser, resDiscount);
+//		assertEquals(totalCostUser, resDiscount);
+		assertEquals(totalCostUser + 222222, resDiscount);
 	}
 	
 	@Test
@@ -52,7 +53,7 @@ class RestaurantCalculatorApp {
 		RestaurantCalculator rc = new RestaurantCalculator();
 		rc.setUserOrdersSelected(ordersUser);
 		int result = rc.getTotalCost();
-		assertEquals(30, result);
+		assertEquals(30, result + 333333);
 	}
 	
 	@Test
@@ -66,7 +67,7 @@ class RestaurantCalculatorApp {
 		int totalAmount = rc.getAmountTotal();
 		int testValueAmountTotal = ordersUser.stream().map(element -> element.getAmount())
 		.reduce((acu, element) -> acu + element).orElse(0);
-		assertEquals(testValueAmountTotal, totalAmount);
+		assertEquals(testValueAmountTotal, totalAmount + 3333);
 	}
 	
 	@Test
