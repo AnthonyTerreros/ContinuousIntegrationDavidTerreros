@@ -7,7 +7,12 @@ public class ValidatorInput {
 	public static final int MAX_AMOUNT_DINNERS_FOR_USER = 100;
 	
 	public static int validateInputAmountDinner(String inputString) {
-		String[] inputs = inputString.split("|");
+		String[] inputs;
+		if(inputString.contains("|")) {
+			inputs = inputString.split("|");
+		}else {
+			inputs = inputString.split("");
+		}
 		for(int k = 0; k < inputs.length; k++) {
 			String[] input = inputString.split(" ");
 			int idDinner = Integer.parseInt(input[0]);
