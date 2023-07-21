@@ -95,10 +95,10 @@ public class RestaurantCalculator {
 
 	public double getDiscounts(double totalCost, int lengthOfUserDinnerSelected) {
 		if (lengthOfUserDinnerSelected > 5) {
-			totalCost = totalCost * 0.05;
+			totalCost += totalCost * 0.05;
 		}
 		if (lengthOfUserDinnerSelected > 10) {
-			totalCost = totalCost * 0.10;
+			totalCost += totalCost * 0.10;
 		}
 		if (totalCost > 50) {
 			totalCost -= 10;
@@ -117,7 +117,7 @@ public class RestaurantCalculator {
 			if (this.specialIdDinners.contains(idDinner)) {
 				result += (this.costDinners.get(m) * amountDinner + this.costDinners.get(m) * amountDinner * 0.05);
 			} else {
-				result += this.costDinners.get(m) * amountDinner;
+				result += (this.costDinners.get(m) * amountDinner);
 			}
 		}
 		return result;
