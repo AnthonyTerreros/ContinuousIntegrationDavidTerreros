@@ -22,7 +22,7 @@ public class RestaurantCalculator {
 	}
 
 	public ArrayList<Order> getUserOrdersSelected() {
-		return userOrdersSelected;
+		return userOrdersSelected;	
 	}
 
 	public void setUserOrdersSelected(ArrayList<Order> userOrdersSelected) {
@@ -39,15 +39,13 @@ public class RestaurantCalculator {
 	}
 
 	public int addOrder(String orders) {
-		String[] ordersSplitedStrings;
-		if(orders.contains("|")) {
-			ordersSplitedStrings = orders.split("|");
-		}else {
-			ordersSplitedStrings = orders.split("");
+		if(!orders.contains("|")) {
+			orders += "|";
 		}
+		String[] ordersSplitedStrings = orders.split("\\|");
 		for (int k = 0; k < ordersSplitedStrings.length; k++) {
 			String orderSplit = ordersSplitedStrings[k];
-			String[] resSplited = orderSplit.split("|");
+			String[] resSplited = orderSplit.split(" ");
 			int idDinnerUserSelected = Integer.parseInt(resSplited[0]) - 1;
 			int amountUserSelected = Integer.parseInt(resSplited[1]);
 			int resValidator = ValidatorInput.validateInputAmountDinner(orderSplit);
