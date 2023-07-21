@@ -26,6 +26,7 @@ public class ValidatorInput {
 	}
 	
 	public static int validateExistingIdDinner(int id, ArrayList<Order> userDinnersSelected) {
+		if(userDinnersSelected.isEmpty()) return 0;
 		for(int i = 0; i < userDinnersSelected.size(); i++) {
 			if(userDinnersSelected.get(i).getDinner() == id) {
 				return -4;

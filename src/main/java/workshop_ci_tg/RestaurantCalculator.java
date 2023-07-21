@@ -53,14 +53,15 @@ public class RestaurantCalculator {
 			if (resValidator != -1 || resValidator != -2) {
 				Order order = new Order(idDinnerUserSelected, amountUserSelected);
 				int resExistedId = ValidatorInput.validateExistingIdDinner(resValidator, userOrdersSelected);
-				if (resExistedId != -4) {
-					this.userOrdersSelected.add(order);
-				} else {
+				if (resExistedId == -4) {
 					this.showMessage(resExistedId);
 					return -999;
+				} else {
+					this.userOrdersSelected.add(order);
 				}
+			}else {
+				return -999;
 			}
-			return -999;
 		}
 
 		return 0;
