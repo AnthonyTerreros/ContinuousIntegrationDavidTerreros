@@ -90,7 +90,7 @@ class RestaurantCalculatorApp {
 		ordersUser.add(new Order(5, 1));
 		RestaurantCalculator rc = new RestaurantCalculator();
 		rc.setUserOrdersSelected(ordersUser);
-		int resChangeOrder = rc.changeOrder("3 4");
+		int resChangeOrder = rc.changeOrder("4 4");
 		assertEquals(0, resChangeOrder);
 	}
 	
@@ -98,7 +98,7 @@ class RestaurantCalculatorApp {
 	// class ValidateInputAmount
 	@Test
 	public void validateInputAmountDinnerTest() {
-		int resValitedateI1 = ValidatorInput.validateInputAmountDinner("3 2|2 1");
+		int resValitedateI1 = ValidatorInput.validateInputAmountDinner("3 2|2 1|3 4");
 		assertEquals(0, resValitedateI1);
 	}
 	

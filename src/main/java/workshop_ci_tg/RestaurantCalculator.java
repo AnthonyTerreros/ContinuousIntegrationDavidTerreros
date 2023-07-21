@@ -130,7 +130,7 @@ public class RestaurantCalculator {
 	}
 
 	public int resetInventory(int id, int amount) {
-		int amountTotal = this.inventoryDinners.get(id - 1);
+		int amountTotal = this.inventoryDinners.get(id);
 		if (amountTotal == 0) {
 			return -3;
 		}

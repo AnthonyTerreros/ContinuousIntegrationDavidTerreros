@@ -11,8 +11,8 @@ public class ValidatorInput {
 			inputString += "|";
 		}
 		String[] inputs = inputString.split("\\|");
-		for(int k = 0; k < inputs.length; k++) {
-			String[] input = inputString.split(" ");
+		for(String inpString: inputs) {
+			String[] input = inpString.split(" ");
 			int idDinner = Integer.parseInt(input[0]);
 			int amount = Integer.parseInt(input[1]);
 			if(idDinner < 0 && idDinner > 6) {
