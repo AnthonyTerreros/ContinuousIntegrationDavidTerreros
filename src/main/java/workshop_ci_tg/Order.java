@@ -5,10 +5,6 @@ public class Order {
 	private int idDinner;
 	private int amount;
 
-	public Order() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public Order(int idDinner, int amount) {
 		super();
 		this.idDinner = idDinner;
@@ -18,10 +14,6 @@ public class Order {
 	
 	public int getDinner() {
 		return idDinner;
-	}
-
-	public void setDinner(int dinner) {
-		this.idDinner = dinner;
 	}
 
 	public int getAmount() {

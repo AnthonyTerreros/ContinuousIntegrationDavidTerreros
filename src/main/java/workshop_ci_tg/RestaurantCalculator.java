@@ -24,6 +24,10 @@ public class RestaurantCalculator {
 	public ArrayList<Order> getUserOrdersSelected() {
 		return userOrdersSelected;	
 	}
+	
+	public void setInventoryDinners(ArrayList<Integer> inventoryDinners) {
+		this.inventoryDinners = inventoryDinners;
+	}
 
 	public void setUserOrdersSelected(ArrayList<Order> userOrdersSelected) {
 		this.userOrdersSelected = userOrdersSelected;
@@ -42,6 +46,7 @@ public class RestaurantCalculator {
 		if(!orders.contains("|")) {
 			orders += "|";
 		}
+		System.out.println("\n\n\nOrders Splited: " + orders);
 		String[] ordersSplitedStrings = orders.split("\\|");
 		for (int k = 0; k < ordersSplitedStrings.length; k++) {
 			String orderSplit = ordersSplitedStrings[k];
@@ -50,13 +55,13 @@ public class RestaurantCalculator {
 			int amountUserSelected = Integer.parseInt(resSplited[1]);
 			int resValidator = ValidatorInput.validateInputAmountDinner(orderSplit);
 			this.showMessage(resValidator);
-			if (resValidator != -1 || resValidator != -2) {
-				Order order = new Order(idDinnerUserSelected, amountUserSelected);
-				int resExistedId = ValidatorInput.validateExistingIdDinner(resValidator, userOrdersSelected);
+			if (!(resValidator == -1 || resValidator == -2)) {
+				int resExistedId = ValidatorInput.validateExistingIdDinner(idDinnerUserSelected, userOrdersSelected);
 				if (resExistedId == -4) {
 					this.showMessage(resExistedId);
 					return -999;
 				} else {
+					Order order = new Order(idDinnerUserSelected, amountUserSelected);
 					this.userOrdersSelected.add(order);
 				}
 			}else {
@@ -72,21 +77,21 @@ public class RestaurantCalculator {
 		int resCheckResultAmount = ValidatorInput.checkMaxAmountQuantity(totalAmount);
 		if (resCheckResultAmount == -6) {
 			this.showMessage(resCheckResultAmount);
-			return -999.00;
+			return -6.00;
 		}
 		int resCheckEmpty = ValidatorInput.checkUserOrderDinnerIsEmpty(this.userOrdersSelected);
 		if (resCheckEmpty == -5) {
 			this.showMessage(resCheckEmpty);
-			return -999.00;
+			return -5.00;
 		}
 		for (int k = 0; k < this.userOrdersSelected.size(); k++) {
 			Order orderUser = userOrdersSelected.get(k);
 			int resInventory = this.resetInventory(orderUser.getDinner(), orderUser.getAmount());
-			if (resInventory == -4) {
+			if (resInventory == -3) {
 				this.showMessage(resInventory, orderUser.getDinner());
 				System.out.println("This dinner is not available. Please enter 0 in the dinner "
 						+ "quantity. Make sure it is the same dinner with the respective id.");
-				break;
+				return -3.00;
 			}
 		}
 		double finalCost = this.getTotalCost();
@@ -132,6 +137,7 @@ public class RestaurantCalculator {
 
 	public int resetInventory(int id, int amount) {
 		int amountTotal = this.inventoryDinners.get(id);
+		System.out.println(amountTotal);
 		if (amountTotal == 0) {
 			return -3;
 		}
@@ -164,13 +170,12 @@ public class RestaurantCalculator {
 
 	public int changeOrder(String inputUser) {
 		int resValidator = ValidatorInput.validateInputAmountDinner(inputUser);
-		if (resValidator != 1 || resValidator != 2) {
+		if (!(resValidator == -1 || resValidator == -2)) {
 			String[] inputSplited = inputUser.split(" ");
 			int idDinnerUserSelecte = Integer.parseInt(inputSplited[0]);
 			int amountDinner = Integer.parseInt(inputSplited[1]);
 			Order order = this.userOrdersSelected.get(idDinnerUserSelecte);
 			order.setAmount(amountDinner);
-			System.out.println("ID" + idDinnerUserSelecte + "Dinner has been updated! \n");
 			return 0;
 		} else {
 			this.showMessage(resValidator);
@@ -180,7 +185,7 @@ public class RestaurantCalculator {
 	}
 
 	public void cancelOrder() {
-		this.inventoryDinners = new ArrayList<>();
+		this.userOrdersSelected = new ArrayList<>();
 	}
 
 }

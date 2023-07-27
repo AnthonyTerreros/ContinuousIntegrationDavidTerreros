@@ -1,6 +1,8 @@
 package workshop_ci_tg;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ValidatorInput {
 	
@@ -15,7 +17,7 @@ public class ValidatorInput {
 			String[] input = inpString.split(" ");
 			int idDinner = Integer.parseInt(input[0]);
 			int amount = Integer.parseInt(input[1]);
-			if(idDinner < 0 && idDinner > 6) {
+			if(idDinner < 0 || idDinner > 6) {
 				return -2;
 			}
 			if(!(amount > 0)) {
@@ -27,10 +29,9 @@ public class ValidatorInput {
 	
 	public static int validateExistingIdDinner(int id, ArrayList<Order> userDinnersSelected) {
 		if(userDinnersSelected.isEmpty()) return 0;
-		for(int i = 0; i < userDinnersSelected.size(); i++) {
-			if(userDinnersSelected.get(i).getDinner() == id) {
-				return -4;
-			}
+		List<Integer> existingIds = userDinnersSelected.stream().map(elem -> elem.getDinner()).toList();
+		if(existingIds.contains(id)) {
+			return -4;
 		}
 		return 0;
 	}

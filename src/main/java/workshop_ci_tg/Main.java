@@ -4,49 +4,49 @@ import java.util.Scanner;
 
 public class Main {
 	
-	public static void main() {
-		try {
-			Scanner s = new Scanner(System.in);
-			String userOptionSelected = "";
-			RestaurantCalculator rs = new RestaurantCalculator();
-			int actionUser = 1;
-			while(actionUser != 5) {
-				doActions();
-				actionUser = s.nextInt();
-				if(actionUser == 1 ) {
-					showMenu();
-					System.out.print("Write id dinner and amount: (Ex: 3 12 or 3 1 | 1 4 | 6 4 for select multiple dinner): ");
-					userOptionSelected = s.next();
-					int res = ValidatorInput.validateInputAmountDinner(userOptionSelected);
-					if(res == -1) {
-						System.out.println("You already selected this option. \n");
-					}
-					else if(res == -2) {
-						System.out.println("Id dinner don't exists. Please write again. \n.");
-					}
-					else {
-						rs.addOrder(userOptionSelected);
-					}
-				}
-				if(actionUser == 2) {
-					rs.changeOrder(userOptionSelected);
-				}
-				if(actionUser == 3) {
-					double resRC = rs.calculateFinalCost();
-					System.out.println("Fina Cost of the Dinners is: " + resRC + "\n");
-				}
-				
-				if(actionUser == 4) {
-					rs.cancelOrder();
-				}
-				
-			}
-			System.out.println("Thanks for using MyRestaurantApp");
-		}catch(Exception e) {
-			System.out.println("Ocurr a Error in the app.");
-			System.out.println("App Closed!");
-		}
-	}
+//	public static void main() {
+//		try {
+//			Scanner s = new Scanner(System.in);
+//			String userOptionSelected = "";
+//			RestaurantCalculator rs = new RestaurantCalculator();
+//			int actionUser = 1;
+//			while(actionUser != 5) {
+//				doActions();
+//				actionUser = s.nextInt();
+//				if(actionUser == 1 ) {
+//					showMenu();
+//					System.out.print("Write id dinner and amount: (Ex: 3 12 or 3 1 | 1 4 | 6 4 for select multiple dinner): ");
+//					userOptionSelected = s.next();
+//					int res = ValidatorInput.validateInputAmountDinner(userOptionSelected);
+//					if(res == -1) {
+//						System.out.println("You already selected this option. \n");
+//					}
+//					else if(res == -2) {
+//						System.out.println("Id dinner don't exists. Please write again. \n.");
+//					}
+//					else {
+//						rs.addOrder(userOptionSelected);
+//					}
+//				}
+//				if(actionUser == 2) {
+//					rs.changeOrder(userOptionSelected);
+//				}
+//				if(actionUser == 3) {
+//					double resRC = rs.calculateFinalCost();
+//					System.out.println("Fina Cost of the Dinners is: " + resRC + "\n");
+//				}
+//				
+//				if(actionUser == 4) {
+//					rs.cancelOrder();
+//				}
+//				
+//			}
+//			System.out.println("Thanks for using MyRestaurantApp");
+//		}catch(Exception e) {
+//			System.out.println("Ocurr a Error in the app.");
+//			System.out.println("App Closed!");
+//		}
+//	}
 	
 	public static void showMenu() {
 		System.out.println("[+] Welcome to MyRestaurantApp [+]\n");
